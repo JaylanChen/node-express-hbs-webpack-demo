@@ -19,8 +19,9 @@ app.use(favicon(path.join(__dirname, 'client', 'assets', 'favicon.ico')));
 var hbs = exphbs.create({
     extname: ".hbs",
     defaultLayout: "layout",
-// layoutsDir: path.join(projectRootPath, "dist", "views", "layouts"), // 默认`Views` 文件夹下的 /layouts
-// partialsDir: path.join(projectRootPath, "dist", "views", "partials"),// 默认`Views` 文件夹下的 /partials
+    helpers: require('handlebars-helpers')(['array', 'string']),
+    // layoutsDir: path.join(projectRootPath, "dist", "views", "layouts"), // 默认`Views` 文件夹下的 /layouts
+    // partialsDir: path.join(projectRootPath, "dist", "views", "partials"),// 默认`Views` 文件夹下的 /partials
 });
 
 app.set("views", path.join(__dirname, "client", "views"));
