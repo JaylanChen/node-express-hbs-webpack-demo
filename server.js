@@ -3,6 +3,7 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const favicon = require('serve-favicon');
 require('express-async-errors');
+const exphbs = require('express-handlebars');
 
 // Create global app object
 var app = express();
@@ -14,8 +15,21 @@ app.use(bodyparser.json());
 
 app.use(favicon(path.join(__dirname, 'client', 'assets', 'favicon.ico')));
 
+// view engine setup
+var hbs = exphbs.create({
+    extname: ".hbs",
+    defaultLayout: "layout",
+// layoutsDir: path.join(projectRootPath, "dist", "views", "layouts"), // 默认`Views` 文件夹下的 /layouts
+// partialsDir: path.join(projectRootPath, "dist", "views", "partials"),// 默认`Views` 文件夹下的 /partials
+});
+
+app.set("views", path.join(__dirname, "client", "views"));
+app.engine("hbs", hbs.engine);
+app.set("view engine", "hbs");
+// view engine setup end
+
 app.get('/', function (req, res) {
-    res.send('hello world');
+    res.render('home/index');
 });
 
 // finally, let's start our server...
