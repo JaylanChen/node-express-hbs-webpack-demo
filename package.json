@@ -4,6 +4,7 @@
   "description": "node express hbs(handlebars) webpack demo for server side renderer",
   "main": "server.js",
   "scripts": {
+    "start": "server",
     "test": "test"
   },
   "repository": {
