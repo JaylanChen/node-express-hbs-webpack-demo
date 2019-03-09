@@ -2,6 +2,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const path = require('path');
 const favicon = require('serve-favicon');
+require('express-async-errors');
 
 // Create global app object
 var app = express();
