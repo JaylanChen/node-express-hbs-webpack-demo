@@ -1,7 +1,17 @@
 const express = require('express');
+const bodyparser = require('body-parser');
+const path = require('path');
+const favicon = require('serve-favicon');
 
 // Create global app object
 var app = express();
+
+app.use(bodyparser.urlencoded({
+    extended: false
+}));
+app.use(bodyparser.json());
+
+app.use(favicon(path.join(__dirname, 'client', 'assets', 'favicon.ico')));
 
 app.get('/', function (req, res) {
     res.send('hello world');
@@ -21,20 +31,20 @@ server.on("error", onError);
 
 function onError(error) {
     if (error.syscall !== "listen") {
-      throw error;
-    }  
+        throw error;
+    }
     var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
     // handle specific listen errors with friendly messages
     switch (error.code) {
-      case "EACCES":
-        console.error(bind + " requires elevated privileges");
-        process.exit(1);
-        break;
-      case "EADDRINUSE":
-        console.error(bind + " is already in use");
-        process.exit(1);
-        break;
-      default:
-        throw error;
+        case "EACCES":
+            console.error(bind + " requires elevated privileges");
+            process.exit(1);
+            break;
+        case "EADDRINUSE":
+            console.error(bind + " is already in use");
+            process.exit(1);
+            break;
+        default:
+            throw error;
     }
-  }
+}

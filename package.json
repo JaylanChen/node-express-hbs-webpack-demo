@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/JaylanChen/node-express-hbs-webpack-demo#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-async-errors": "^3.1.1",
+    "serve-favicon": "^2.5.0"
   }
 }
