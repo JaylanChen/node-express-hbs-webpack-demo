@@ -4,7 +4,7 @@
   "description": "node express hbs(handlebars) webpack demo for server side renderer",
   "main": "server.js",
   "scripts": {
-    "start": "server",
+    "start": "node server.js",
     "test": "test"
   },
   "repository": {
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/JaylanChen/node-express-hbs-webpack-demo/issues"
   },
-  "homepage": "https://github.com/JaylanChen/node-express-hbs-webpack-demo#readme"
+  "homepage": "https://github.com/JaylanChen/node-express-hbs-webpack-demo#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
