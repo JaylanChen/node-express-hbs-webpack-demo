@@ -5,6 +5,8 @@ const favicon = require('serve-favicon');
 require('express-async-errors');
 const exphbs = require('express-handlebars');
 
+const utils = require('./utils');
+
 // Create global app object
 var app = express();
 
@@ -19,7 +21,7 @@ app.use(favicon(path.join(__dirname, 'client', 'assets', 'favicon.ico')));
 var hbs = exphbs.create({
     extname: ".hbs",
     defaultLayout: "layout",
-    helpers: require('handlebars-helpers')(['array', 'string']),
+    helpers: utils.handlebarsHelpers,
     // layoutsDir: path.join(projectRootPath, "dist", "views", "layouts"), // 默认`Views` 文件夹下的 /layouts
     // partialsDir: path.join(projectRootPath, "dist", "views", "partials"),// 默认`Views` 文件夹下的 /partials
 });
