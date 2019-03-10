@@ -7,12 +7,14 @@ const exphbs = require('express-handlebars');
 
 const config = require('./config');
 const utils = require('./utils');
+const routes = require('./routes');
 
 const isLocal = process.env.NODE_ENV === 'local';
 
 
 // Create global app object
 let app = express();
+global.appName = config.appName;
 
 app.use(bodyparser.urlencoded({
     extended: false
@@ -51,9 +53,7 @@ if (isLocal) {
     addWebpackDevAndHotMiddleware(app);
 }
 
-app.get('/', function (req, res) {
-    res.render('home/index');
-});
+routes(app);
 
 // finally, let's start our server...
 let appPort = normalizePort(config.appPort);
