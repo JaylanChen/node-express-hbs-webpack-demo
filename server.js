@@ -5,6 +5,7 @@ const favicon = require('serve-favicon');
 require('express-async-errors');
 const exphbs = require('express-handlebars');
 
+const config = require('./config');
 const utils = require('./utils');
 
 // Create global app object
@@ -36,17 +37,29 @@ app.get('/', function (req, res) {
 });
 
 // finally, let's start our server...
-var server = app.listen(9386, function () {
+var appPort = normalizePort(config.appPort);
+var server = app.listen(appPort, function () {
     var addr = server.address();
     var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
     console.log("Express server listening on " + bind);
 });
 server.on("error", onError);
 
-/**
- * Event listener for HTTP server "error" event.
- */
+// Normalize a port into a number, string, or false.
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+    if (isNaN(port)) {
+      // named pipe
+      return val;
+    }
+    if (port >= 0) {
+      // port number
+      return port;
+    }
+    return false;
+  }
 
+// Event listener for HTTP server "error" event.
 function onError(error) {
     if (error.syscall !== "listen") {
         throw error;
