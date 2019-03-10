@@ -8,6 +8,7 @@ const exphbs = require('express-handlebars');
 const config = require('./config');
 const utils = require('./utils');
 const routes = require('./routes');
+const middlewares = require('./middlewares');
 
 const isLocal = process.env.NODE_ENV === 'local';
 
@@ -53,13 +54,22 @@ if (isLocal) {
     addWebpackDevAndHotMiddleware(app);
 }
 
+// 请求Id
+app.use(middlewares.requestId);
+
 // logger
 app.use(utils.logger.defaultLogger);
 
 routes(app);
 
+// 捕获404
+app.use(middlewares.notFound);
+
 // error logger
 app.use(utils.logger.errorLogger);
+
+// 错误处理
+app.use(middlewares.error);
 
 // finally, let's start our server...
 let appPort = normalizePort(config.appPort);

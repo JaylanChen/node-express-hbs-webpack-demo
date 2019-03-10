@@ -1,0 +1,27 @@
+const base = require('../routes/base');
+
+/**
+ * 404
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+module.exports = async function (req, res, next) {
+    if (req.xhr) {
+      return res.json({
+        "errorCode": 404,
+        "errorMsg": "Not Found",
+        "httpStatusCode": 404,
+        "instance": null,
+        "success": false
+      })
+    }
+    var vm = {};
+    base.seoInfo(vm, {
+      title: 'Not Found'
+    });
+    res.status(404, {
+      layout: false
+    });
+    res.render('shared/404', vm);
+}
