@@ -4,8 +4,12 @@
   "description": "node express hbs(handlebars) webpack demo for server side renderer",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=local node server.js",
-    "test": "test"
+    "start": "cross-env NODE_ENV=local supervisor -w routes,utils,build,server.js,server.common.js -e js -i client -- --inspect=9396 --max-old-space-size=3072 ./server.js",
+    "build": "webpack --config ./build",
+    "build:production": "cross-env NODE_ENV=production --max-old-space-size=2048 webpack --config ./build",
+    "server": "node ./server.js",
+    "production": "npm run build:production && cross-env NODE_ENV=production node ./server.js",
+    "test": "cross-env NODE_ENV=test node ./test.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,8 @@
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
+    "autodll-webpack-plugin": "^0.4.2",
+    "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
     "body-parser": "^1.18.3",
     "clean-webpack-plugin": "^2.0.0",
@@ -41,9 +47,12 @@
     "handlebars-loader": "^1.7.1",
     "html-webpack-custominject-plugin": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.3.1",
     "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "raw-loader": "^1.0.0",
     "serve-favicon": "^2.5.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",

@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackCustomInjectPlugin = require('html-webpack-custominject-plugin');
+const AutoDllPlugin = require('autodll-webpack-plugin');
 
 const config = require('../config');
 const htmlWebpackPlugins = require('./plugins/multi-html-webpack-plugin');
@@ -24,12 +25,20 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     ...htmlWebpackPlugins,
-    new HtmlWebpackCustomInjectPlugin(),
+    new HtmlWebpackCustomInjectPlugin(),    
+    new AutoDllPlugin({
+      context: path.join(__dirname, '../'),
+      inject: true,
+      filename: isLocal ? '[name]-[hash:8].js' : '[name]-[contenthash:8].js',
+      path: './lib',
+      entry: {
+        vendor: ['axios', 'jquery']
+      }
+    }),
     new MiniCssExtractPlugin({
       filename: isLocal ? 'js/[name]-[hash:8].css' : 'css/[name]-[contenthash:8].css',
     }),
     new webpack.ProgressPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, '..', 'client', 'assets'),
       to: path.resolve(__dirname, '..', 'dist', 'assets')

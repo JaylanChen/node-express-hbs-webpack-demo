@@ -1,7 +1,7 @@
 //这里面自动处理环境返回的config
 const dev = require('./webpack.dev')
 const local = require('./webpack.local')
-const production = require('./webpack.prod')
+const production = require('./webpack.production')
 
 let config = {};
 if (process.env.NODE_ENV === 'production') {
