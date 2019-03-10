@@ -4,6 +4,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 require('express-async-errors');
 const exphbs = require('express-handlebars');
+const compression = require('compression');
 
 const config = require('./config');
 const utils = require('./utils');
@@ -16,6 +17,13 @@ const isLocal = process.env.NODE_ENV === 'local';
 // Create global app object
 let app = express();
 global.appName = config.appName;
+
+
+// 禁用etag
+app.disable('etag');
+app.locals.settings['x-powered-by'] = false;
+// 压缩
+app.use(compression());
 
 app.use(bodyparser.urlencoded({
     extended: false
@@ -49,6 +57,12 @@ if (isLocal) {
 }
 // view engine setup end
 
+if (isLocal) {
+    const reload = require("reload");
+    reload(app, {
+        port: appConfig.build.reloadPort
+    });
+}
 
 if (isLocal) {
     addWebpackDevAndHotMiddleware(app);
