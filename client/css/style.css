@@ -1,0 +1,68 @@
+body,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+img,
+input,
+li,
+p,
+table,
+td,
+ul {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-size: 14px;
+    background: #fff;
+    font-family: Microsoft YaHei, sans-serif
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+input,
+select,
+textarea {
+    outline: 0;
+    border: 0;
+    background: 0 0
+}
+
+textarea {
+    resize: none
+}
+
+input::-ms-clear {
+    display: none
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: none
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.clearfix {
+    zoom: 1
+}

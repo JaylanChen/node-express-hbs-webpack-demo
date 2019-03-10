@@ -25,12 +25,34 @@
   },
   "homepage": "https://github.com/JaylanChen/node-express-hbs-webpack-demo#readme",
   "dependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
     "body-parser": "^1.18.3",
+    "clean-webpack-plugin": "^2.0.0",
+    "copy-webpack-plugin": "^5.0.0",
     "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
     "express": "^4.16.4",
     "express-async-errors": "^3.1.1",
     "express-handlebars": "^3.0.2",
     "handlebars-helpers": "^0.10.0",
-    "serve-favicon": "^2.5.0"
+    "handlebars-loader": "^1.7.1",
+    "html-webpack-custominject-plugin": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "raw-loader": "^1.0.0",
+    "serve-favicon": "^2.5.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1"
+  },
+  "devDependencies": {
+    "express-template-reload": "^1.0.8",
+    "style-loader": "^0.23.1",
+    "webpack-dev-middleware": "^3.6.1",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }
