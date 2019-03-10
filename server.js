@@ -53,7 +53,13 @@ if (isLocal) {
     addWebpackDevAndHotMiddleware(app);
 }
 
+// logger
+app.use(utils.logger.defaultLogger);
+
 routes(app);
+
+// error logger
+app.use(utils.logger.errorLogger);
 
 // finally, let's start our server...
 let appPort = normalizePort(config.appPort);

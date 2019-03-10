@@ -56,7 +56,10 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.8.0",
+    "winston-transport": "^4.3.0"
   },
   "devDependencies": {
     "express-template-reload": "^1.0.8",
