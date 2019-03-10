@@ -18,5 +18,18 @@ module.exports = {
     urls: {
         remoteServiceBaseUrl: 'http://api.jaylan.net/',
         appBaseUrl: webHost
+    },
+    log: {
+        host: '127.0.0.1',
+        port: 8086,
+        ssl: false,
+        // path: '',
+        // auth: {},
+        // headers: {},
+        // application: '',
+        // name: 'customLogger',
+        // enableQueue: true,
+        // limit: 1000,
+        // intervalTime: 60
     }
 }
