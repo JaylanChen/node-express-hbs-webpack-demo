@@ -16,6 +16,9 @@ const isLocal = process.env.NODE_ENV === 'local';
 module.exports = {
   entry: {
     'home.index': ['./client/js/home/index.js'],
+
+    'shared.404': ['./client/js/shared/404.js'],
+    'shared.500': ['./client/js/shared/500.js']
   },
   output: {
     filename: isLocal ? 'js/[name]-[hash:8].js' : 'js/[name]-[contenthash:8].js',

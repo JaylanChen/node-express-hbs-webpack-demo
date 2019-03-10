@@ -1,4 +1,4 @@
-const base = require('../routes/base');
+const routeCommon = require('../routes/routeCommon');
 
 /**
  * 404
@@ -17,7 +17,7 @@ module.exports = async function (req, res, next) {
       })
     }
     var vm = {};
-    base.seoInfo(vm, {
+    routeCommon.seoInfo(vm, {
       title: 'Not Found'
     });
     res.status(404, {

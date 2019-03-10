@@ -1,4 +1,4 @@
-const base = require("../routes/base");
+const routeCommon = require("../routes/routeCommon");
 
 /**
  * 500
@@ -28,7 +28,7 @@ module.exports = async function(err, req, res, next) {
       });
     }
     var vm = {};
-    base.seoInfo(vm, {
+    routeCommon.seoInfo(vm, {
       title: "服务器错误"
     });
     res.status(500);
