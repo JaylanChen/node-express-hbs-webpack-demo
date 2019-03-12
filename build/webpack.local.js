@@ -12,7 +12,7 @@ Object.keys(webpackCommonConfig.entry).forEach(function (name) {
 
 module.exports = merge(webpackCommonConfig, {
     mode: "development",
-    devtool: "#source-map",
+    devtool: "eval",
     devServer: {
         contentBase: '../client',
         hot: true,
