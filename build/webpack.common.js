@@ -39,7 +39,7 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: isLocal ? 'js/[name]-[hash:8].css' : 'css/[name]-[contenthash:8].css',
+      filename: isLocal ? 'css/[name]-[hash:8].css' : 'css/[name]-[contenthash:8].css',
     }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin([{
@@ -117,7 +117,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            name: "/images/[name]-[hash:8].[ext]",
+            name: "images/[name]-[hash:8].[ext]",
             publicPath: publicPath
           }
         },
@@ -129,7 +129,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            name: "/css/font/[name]-[hash:8].[ext]",
+            name: "css/font/[name]-[hash:8].[ext]",
             publicPath: publicPath
           }
         },
