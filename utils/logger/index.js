@@ -51,7 +51,7 @@ let errorLogger = expressWinston.errorLogger({
 let customLogger = winston.createLogger({
   transports: defaultTransportArr,
   level: 'warn',
-  dynamicMeta: (req, res) => {
+  defaultMeta: (req, res) => {
     return {
       appName: global.appName,
       date: new Date().toString()
