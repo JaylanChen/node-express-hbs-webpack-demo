@@ -21,26 +21,30 @@ if (process.env.NODE_ENV !== "production") {
   customTransportArr.push(consoleTransport);
 }
 
+
+const requestWhitelist = ['url', 'headers', 'cookies', 'method', 'ip', 'xhr', 'httpVersion', 'originalUrl', 'query', 'body', 'hostname'];
+
+const dynamicMeta = (req, res) => {
+  return {
+      token: req.token,
+      appName: config.appName,
+      date: new Date().toString()
+  }
+}
+
 let defaultLogger = expressWinston.logger({
   transports: defaultTransportArr,
   ignoreRoute: ignoreRoute,
-  dynamicMeta: (req, res) => {
-    return {
-      appName: global.appName,
-      // sessionID: req["sessionID"],
-      // "X-Request-Id": req["X-Request-Id"]
-    };
-  }
+  requestWhitelist,
+  dynamicMeta
 });
 
 let errorLogger = expressWinston.errorLogger({
   transports: errorTransportArr,
   ignoreRoute: ignoreRoute,
-  dynamicMeta: (req, res) => {
-    return {
-      appName: global.appName
-    };
-  }
+  requestWhitelist,
+  dynamicMeta,
+  blacklistedMetaFields: ['date', 'process', 'os', 'error', 'level']
 });
 
 
@@ -49,7 +53,8 @@ let customLogger = winston.createLogger({
   level: 'warn',
   dynamicMeta: (req, res) => {
     return {
-      appName: global.appName
+      appName: global.appName,
+      date: new Date().toString()
     };
   }
 })

@@ -38,7 +38,7 @@ module.exports = class CustomTransport extends Transport {
     }
   }
 
-  log(logInfo, callback) {
+  log(info, callback) {
     if (this.enableQueue && this._logQueue.length < this.limit) {
       let logArr = _logQueue.splice(0, this.limit);
       _logHttpRequest(logArr, (error, response) => {
@@ -53,29 +53,13 @@ module.exports = class CustomTransport extends Transport {
         }
       });
     } else {
-      let { level, message, req, res, error, metaData } = logInfo;
-      if (!metaData) {
-        metaData = {};
-      }
-      let method = req.method.toLowerCase();
-      //metaData["X-Request-Id"] = req["X-Request-Id"];
-      metaData.requestBody = JSON.stringify(method === "get" ? req.query : req.body);
-      metaData.method = method;
-      metaData.xbheaders = JSON.stringify(req.headers);
-      metaData.url = req.host + req.url;
-      metaData.token = req.token;
-
-      if(error){
-        metaData.apiUrl = error.config && error.config.url;
-        metaData.errorStack = JSON.stringify(metaData.err.stack);
-      }
-
+      let { level, message, meta } = info;
       this._logQueue.push({
         env: process.env.NODE_ENV,
         application: this.application,
         level: level || 'info',
         msg: message,
-        data: metaData
+        data: meta
       });
       this.emit("logged", logInfo);
     }
