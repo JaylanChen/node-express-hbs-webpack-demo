@@ -31,7 +31,9 @@
   "dependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
     "autodll-webpack-plugin": "^0.4.2",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
