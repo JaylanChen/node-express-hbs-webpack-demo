@@ -6,7 +6,7 @@ module.exports = function (api) {
             ["@babel/preset-env", {
                 "modules": false,
                 "targets": {
-                    "browsers": ["> 1%", "last 10 versions", "not ie <= 8"]
+                    "browsers": ["> 1%", "last 10 versions", "not ie <= 9"]
                 },
                 "useBuiltIns": "usage"
             }]
