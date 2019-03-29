@@ -1,3 +1,4 @@
 {
-    "editor.fontFamily": "Inconsolata,Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "Inconsolata,Consolas, 'Courier New', monospace",
+    "html.format.wrapLineLength": 0
 }
