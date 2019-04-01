@@ -49,9 +49,9 @@ module.exports = {
         // }
       }
     },
-    runtimeChunk: {
-      name: 'manifest'
-    }
+    // runtimeChunk: {
+    //   name: 'manifest'
+    // }
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -95,7 +95,7 @@ module.exports = {
             jsHotAccept: true
           }
         }],
-        exclude: /node_modules/
+        // exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -103,7 +103,7 @@ module.exports = {
           isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
           "css-loader"
         ],
-        exclude: /node_modules/
+        // exclude: /node_modules/
       },
       // {
       //     test: /\.less$/,
@@ -149,7 +149,7 @@ module.exports = {
             publicPath: publicPath
           }
         },
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -161,7 +161,7 @@ module.exports = {
             publicPath: publicPath
           }
         },
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
       }
     ]
   },

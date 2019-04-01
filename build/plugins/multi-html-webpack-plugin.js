@@ -32,7 +32,7 @@ var walk = function (dir) {
                 //这个地方正式chunks的植入, 对应webpack 配置的entry的key
                 //chunks命名规则就是 views文件夹下的 `目录名.文件名`，如：home.index
                 const chunk = file.replace(config.build.viewsSourcePath, '').replace(path.extname(file), '').replace('/', '').replace(/\//g, '.');
-                option.chunks = [chunk];
+                option.chunks.push(chunk);
             }
             htmlWebpackPlugins.push(new HtmlWebpackPlugin(option))
         }
