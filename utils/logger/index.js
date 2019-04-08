@@ -6,7 +6,8 @@ const config = require('../../config')
 
 let consoleTransport = new winston.transports.Console({
   json: true,
-  colorize: true
+  colorize: true,
+  level: 'warn'
 });
 
 // 自定义日志转换器
