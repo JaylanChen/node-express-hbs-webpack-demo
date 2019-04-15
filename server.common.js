@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const compression = require('compression');
 const utils = require('./utils');
 const middlewares = require('./middlewares');
+const expressHandlebarsMemoryFs = require('express-handlebars-memory-fs');
 
 const isLocal = process.env.NODE_ENV === 'local';
 let appConfig = null;
@@ -89,12 +90,6 @@ function addWebpackDevAndHotMiddleware(app) {
     app.use(webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
         hot: true,
-        // writeToDisk: function (fliePath) {
-        //     if (fliePath.endsWith('.hbs')) {
-        //         return true;
-        //     }
-        //     return false;
-        // },
         stats: {
             colors: true,
             modules: false,
@@ -119,8 +114,7 @@ function addWebpackDevAndHotMiddleware(app) {
     // })
     app.use(hotMiddleware);
 
-    var fs = compiler.outputFileSystem;
-    require('./memory-handlebars')(fs);
+    expressHandlebarsMemoryFs(compiler.outputFileSystem);
 }
 
 // 初始化应用中间件
