@@ -89,12 +89,12 @@ function addWebpackDevAndHotMiddleware(app) {
     app.use(webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
         hot: true,
-        writeToDisk: function (fliePath) {
-            if (fliePath.endsWith('.hbs')) {
-                return true;
-            }
-            return false;
-        },
+        // writeToDisk: function (fliePath) {
+        //     if (fliePath.endsWith('.hbs')) {
+        //         return true;
+        //     }
+        //     return false;
+        // },
         stats: {
             colors: true,
             modules: false,
@@ -118,6 +118,9 @@ function addWebpackDevAndHotMiddleware(app) {
     //   })
     // })
     app.use(hotMiddleware);
+
+    var fs = compiler.outputFileSystem;
+    require('./memory-handlebars')(fs);
 }
 
 // 初始化应用中间件
