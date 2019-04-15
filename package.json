@@ -47,7 +47,6 @@
     "express": "^4.16.4",
     "express-async-errors": "^3.1.1",
     "express-handlebars": "^3.0.2",
-    "express-handlebars-memory-fs": "^1.0.0",
     "express-winston": "^3.1.0",
     "handlebars-helpers": "^0.10.0",
     "handlebars-loader": "^1.7.1",
@@ -68,6 +67,7 @@
     "winston-transport": "^4.3.0"
   },
   "devDependencies": {
+    "express-handlebars-memory-fs": "^1.0.0",
     "express-template-reload": "^1.0.8",
     "reload": "^3.0.0",
     "style-loader": "^0.23.1",
