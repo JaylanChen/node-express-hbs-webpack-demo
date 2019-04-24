@@ -13,7 +13,8 @@ module.exports = function (api) {
             }]
         ],
         'plugins': [
-            ['@babel/plugin-transform-runtime', { 'corejs': 3 }]
+            ['@babel/plugin-transform-runtime', { 'corejs': 3 }],
+            '@babel/plugin-syntax-dynamic-import'
         ]
     };
 };

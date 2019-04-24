@@ -30,9 +30,10 @@
   "homepage": "https://github.com/JaylanChen/node-express-hbs-webpack-demo#readme",
   "dependencies": {
     "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
     "@babel/runtime-corejs3": "^7.4.3",
     "autodll-webpack-plugin": "^0.4.2",
     "axios": "^0.18.0",
