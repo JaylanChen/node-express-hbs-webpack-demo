@@ -71,6 +71,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: isLocal ? 'css/[name]-[hash:8].css' : 'css/[name]-[contenthash:8].css',
+      chunkFilename: '[id].css',
     }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin([{
@@ -84,88 +85,94 @@ module.exports = {
   ],
   module: {
     rules: [{
-        test: /\.js$/,
-        use: [{
-          loader: 'babel-loader?cacheDirectory=true',
-        }, {
-          loader: 'express-template-reload',
+      test: /\.js$/,
+      use: [{
+        loader: 'babel-loader?cacheDirectory=true',
+      }, {
+        loader: 'express-template-reload',
+        options: {
+          enable: isLocal,
+          name: '[name].hbs', // view的名字
+          jsRootDir: 'client/js/', // js相对于项目的目录
+          templateRootDir: 'client/views/', // View相对于项目的目录
+          //nameFormat: name => name.substr(name.indexOf('views/') + 6, name.length),
+          jsHotAccept: true
+        }
+      }],
+      // exclude: /node_modules/
+    },
+    {
+      test: /\.css$/,
+      use: [
+        // isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
+        {
+          loader: MiniCssExtractPlugin.loader,
           options: {
-            enable: isLocal,
-            name: '[name].hbs', // view的名字
-            jsRootDir: 'client/js/', // js相对于项目的目录
-            templateRootDir: 'client/views/', // View相对于项目的目录
-            //nameFormat: name => name.substr(name.indexOf('views/') + 6, name.length),
-            jsHotAccept: true
-          }
-        }],
-        // exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: [
-          isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
-          "css-loader"
-        ],
-        // exclude: /node_modules/
-      },
-      // {
-      //     test: /\.less$/,
-      //     use: extractTextPlugin.extract({
-      //         fallback:"style-loader",
-      //         use: ["css-loader", "less-loader"]
-      //     })
-      // },
-      // {
-      //     test: /\.(scss|sass)$/,
-      //     use: extractTextPlugin.extract({
-      //         fallback:"style-loader",
-      //         use: ["css-loader", "sass-loader"]
-      //     })
-      // },
-      {
-        test: /\.hbs$/,
-        oneOf: [{
-            resourceQuery: /client/,
-            loader: 'handlebars-loader',
-            query: {
-              helperDirs: [
-                path.join(__dirname, '..', 'utils', 'hbs.helpers')
-              ],
-              partialDirs: [
-                path.join(__dirname, '..', 'views', 'partials')
-              ]
-            }
-          },
-          {
-            loader: 'raw-loader'
-          }
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            name: "images/[name]-[hash:8].[ext]",
-            publicPath: publicPath
+            hmr: isLocal
           }
         },
-        // exclude: /node_modules/,
+        "css-loader"
+      ],
+      // exclude: /node_modules/
+    },
+    // {
+    //     test: /\.less$/,
+    //     use: extractTextPlugin.extract({
+    //         fallback:"style-loader",
+    //         use: ["css-loader", "less-loader"]
+    //     })
+    // },
+    // {
+    //     test: /\.(scss|sass)$/,
+    //     use: extractTextPlugin.extract({
+    //         fallback:"style-loader",
+    //         use: ["css-loader", "sass-loader"]
+    //     })
+    // },
+    {
+      test: /\.hbs$/,
+      oneOf: [{
+        resourceQuery: /client/,
+        loader: 'handlebars-loader',
+        query: {
+          helperDirs: [
+            path.join(__dirname, '..', 'utils', 'hbs.helpers')
+          ],
+          partialDirs: [
+            path.join(__dirname, '..', 'views', 'partials')
+          ]
+        }
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            name: "css/font/[name]-[hash:8].[ext]",
-            publicPath: publicPath
-          }
-        },
-        // exclude: /node_modules/,
+        loader: 'raw-loader'
       }
+      ],
+      exclude: /node_modules/
+    },
+    {
+      test: /\.(png|svg|jpg|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: "images/[name]-[hash:8].[ext]",
+          publicPath: publicPath
+        }
+      },
+      // exclude: /node_modules/,
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: "css/font/[name]-[hash:8].[ext]",
+          publicPath: publicPath
+        }
+      },
+      // exclude: /node_modules/,
+    }
     ]
   },
 
