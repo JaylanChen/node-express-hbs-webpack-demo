@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const merge = require("webpack-merge");
+const config = require('../config');
+const path = require('path');
 
 const webpackCommonConfig = require("./webpack.common");
 
@@ -14,22 +16,22 @@ module.exports = merge(webpackCommonConfig, {
     mode: "development",
     devtool: "eval",
     devServer: {
-        contentBase: '../client',
+        contentBase: path.join(__dirname, '..', 'dist'),
         hot: true,
         historyApiFallback: true,
         noInfo: false,
-        colors: true,
-        modules: false,
-        children: false,
-        chunks: false,
-        chunkModules: false
+        host: '0.0.0.0',
+        port: config.appPort,
+        overlay: {
+            errors: true,
+        },
     },
     plugins: [
         // 开启webpack全局热更新
-        new webpack.HotModuleReplacementPlugin(),    
+        new webpack.HotModuleReplacementPlugin(),
         // 当接收到热更新信号时，在浏览器console控制台打印更多可读性高的模块名称等信息
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
-    
+
     ]
 });

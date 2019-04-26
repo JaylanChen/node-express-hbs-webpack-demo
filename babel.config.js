@@ -13,8 +13,10 @@ module.exports = function (api) {
             }]
         ],
         'plugins': [
-            ['@babel/plugin-transform-runtime', { 'corejs': 3 }],
-            '@babel/plugin-syntax-dynamic-import'
+            ['@babel/plugin-proposal-decorators', { "legacy": true }],
+            ['@babel/plugin-proposal-class-properties', { "loose": true }],
+            '@babel/plugin-proposal-export-default-from',
+            ['@babel/plugin-transform-runtime', { 'corejs': 3, "helpers": true, "regenerator": false, "useESModules": true, }]
         ]
     };
 };
