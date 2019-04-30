@@ -9,7 +9,7 @@ module.exports = function (api) {
                     'browsers': ['> 1%', 'last 10 versions', 'not ie <= 9']
                 },
                 'useBuiltIns': 'usage',
-                'corejs': { 'version': 3 }
+                'corejs': { 'version': 3, proposals: true }
             }]
         ],
         'plugins': [

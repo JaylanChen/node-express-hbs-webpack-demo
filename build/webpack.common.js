@@ -104,10 +104,7 @@ module.exports = {
     {
       test: /\.css$/,
       use: [
-        // isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
-        {
-          loader: MiniCssExtractPlugin.loader
-        },
+         isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
         "css-loader"
       ],
       // exclude: /node_modules/
