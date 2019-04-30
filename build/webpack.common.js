@@ -25,34 +25,34 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: publicPath
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          name: `chunk-vendors`,
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          chunks: 'initial' // async 表示对异步模块起作用， initial 表示对初始模块起作用， all 则表示对所有模块起作用
-        },
-        // vue: {
-        //   name: 'chuank-vue',
-        //   test: /[\\/]node_modules[\\/]vue[\\/]/,
-        //   priority: 10,
-        //   chunks: 'initial'
-        // },
-        // common: {
-        //   name: `chunk-common`,
-        //   minChunks: 2,
-        //   priority: -20,
-        //   chunks: 'initial',
-        //   reuseExistingChunk: true
-        // }
-      }
-    },
-    // runtimeChunk: {
-    //   name: 'manifest'
-    // }
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendors: {
+  //         name: `chunk-vendors`,
+  //         test: /[\\/]node_modules[\\/]/,
+  //         priority: -10,
+  //         chunks: 'initial' // async 表示对异步模块起作用， initial 表示对初始模块起作用， all 则表示对所有模块起作用
+  //       },
+  //       // vue: {
+  //       //   name: 'chuank-vue',
+  //       //   test: /[\\/]node_modules[\\/]vue[\\/]/,
+  //       //   priority: 10,
+  //       //   chunks: 'initial'
+  //       // },
+  //       // common: {
+  //       //   name: `chunk-common`,
+  //       //   minChunks: 2,
+  //       //   priority: -20,
+  //       //   chunks: 'initial',
+  //       //   reuseExistingChunk: true
+  //       // }
+  //     }
+  //   },
+  //   // runtimeChunk: {
+  //   //   name: 'manifest'
+  //   // }
+  // },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
@@ -106,10 +106,7 @@ module.exports = {
       use: [
         // isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
         {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            hmr: isLocal
-          }
+          loader: MiniCssExtractPlugin.loader
         },
         "css-loader"
       ],
