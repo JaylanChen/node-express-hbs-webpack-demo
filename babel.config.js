@@ -13,7 +13,7 @@ module.exports = function (api) {
             }]
         ],
         plugins: [
-            // ['@babel/plugin-transform-runtime', { corejs: 2, helpers: true, regenerator: false, useESModules: true, }]
+            ['@babel/plugin-transform-runtime', { helpers: false }]
         ]
     };
 };
