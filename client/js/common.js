@@ -1,4 +1,5 @@
 import "../css/style.css";
+require('core-js');
 
 // const $ = require("jquery")
 // // jquery
