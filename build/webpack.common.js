@@ -60,15 +60,15 @@ module.exports = {
     }),
     ...htmlWebpackPlugins,
     new HtmlWebpackCustomInjectPlugin(),
-    new AutoDllPlugin({
-      context: path.join(__dirname, '../'),
-      inject: true,
-      filename: isLocal ? '[name]-[hash:8].js' : '[name]-[contenthash:8].js',
-      path: './lib',
-      entry: {
-        vendor: ['axios', 'jquery']
-      }
-    }),
+    // new AutoDllPlugin({
+    //   context: path.join(__dirname, '../'),
+    //   inject: true,
+    //   filename: isLocal ? '[name]-[hash:8].js' : '[name]-[contenthash:8].js',
+    //   path: './lib',
+    //   entry: {
+    //     vendor: ['axios', 'jquery']
+    //   }
+    // }),
     new MiniCssExtractPlugin({
       filename: isLocal ? 'css/[name]-[hash:8].css' : 'css/[name]-[contenthash:8].css',
       chunkFilename: '[id].css',
@@ -104,7 +104,7 @@ module.exports = {
     {
       test: /\.css$/,
       use: [
-         isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
+        // isLocal ? 'style-loader' : MiniCssExtractPlugin.loader,
         "css-loader"
       ],
       // exclude: /node_modules/
