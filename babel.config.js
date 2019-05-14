@@ -4,16 +4,16 @@ module.exports = function (api) {
     return {
         presets: [
             ['@babel/preset-env', {
-                modules: false,
-                targets: {
+                'modules': false,
+                'targets': {
                     browsers: ['> 1%', 'last 10 versions', 'not ie <= 9']
                 },
-                useBuiltIns: 'entry', // usage
-                corejs: 2
+                'useBuiltIns': 'entry', // usage
+                'corejs': 2
             }]
         ],
         plugins: [
-            ['@babel/plugin-transform-runtime', { helpers: false }]
+            ['@babel/plugin-transform-runtime', { 'helpers': false, 'regenerator': false, 'useESModules': false }]
         ]
     };
 };
