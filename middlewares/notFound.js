@@ -20,8 +20,5 @@ module.exports = async function (req, res, next) {
     routeCommon.seoInfo(vm, {
       title: 'Not Found'
     });
-    res.status(404, {
-      layout: false
-    });
-    res.render('shared/404', vm);
+    res.status(404).render('shared/404', vm);
 }
