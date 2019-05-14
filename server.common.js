@@ -147,7 +147,7 @@ function afterInitAppRoutes(app) {
  * 创建http server
  */
 function createHttpServer(app) {
-    let appPort = normalizePort(appConfig.appPort);
+    let appPort = normalizePort();
     let server = app.listen(appPort, function () {
         let addr = server.address();
         let bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
@@ -157,11 +157,11 @@ function createHttpServer(app) {
 
 
     // Normalize a port into a number, string, or false.
-    function normalizePort(val) {
-        let port = parseInt(val, 10);
+    function normalizePort() {
+        let port = parseInt(appConfig.appPort, 10);
         if (isNaN(port)) {
             // named pipe
-            return val;
+            return appConfig.appPort;
         }
         if (port >= 0) {
             // port number
@@ -176,6 +176,7 @@ function createHttpServer(app) {
             throw error;
         }
 
+        let port = parseInt(appConfig.appPort, 10);
         let bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
         // handle specific listen errors with friendly messages
