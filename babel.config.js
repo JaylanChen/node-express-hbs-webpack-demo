@@ -13,7 +13,9 @@ module.exports = function (api) {
             }]
         ],
         plugins: [
-            ['@babel/plugin-transform-runtime', { 'helpers': false, 'regenerator': false, 'useESModules': false }]
+            '@babel/plugin-proposal-export-default-from',
+            '@babel/plugin-proposal-export-namespace-from',
+            ['@babel/plugin-proposal-class-properties', { 'loose': true }]
         ]
     };
 };
