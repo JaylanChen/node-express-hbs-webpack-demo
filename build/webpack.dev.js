@@ -1,10 +1,10 @@
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 
-const webpackCommonConfig = require("./webpack.common");
+const webpackBaseConfig = require("./webpack.base");
 
 
-module.exports = merge(webpackCommonConfig, {
+module.exports = merge(webpackBaseConfig, {
   mode: "development",
   devtool: "cheap-eval-source-map ",
   plugins: [

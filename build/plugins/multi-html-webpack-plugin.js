@@ -7,13 +7,14 @@ const path = require('path');
 var htmlWebpackPlugins = [];
 
 var walk = function (dir) {
-    var files = [];
     var list = fs.readdirSync(dir);
     list.forEach(function (file) {
         file = dir + '/' + file;
         var stat = fs.statSync(file);
         if (stat && stat.isDirectory()) {
-            results = files.concat(walk(file));
+            if (file.indexOf('partials') === -1){
+                walk(file);
+            }
         } else {
             //如果是文件 那么添加到htmlwebplugin
             //如果是layout下的 那么不创建默认的chunks

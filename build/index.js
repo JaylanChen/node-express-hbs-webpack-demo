@@ -1,14 +1,10 @@
 //这里面自动处理环境返回的config
-const dev = require('./webpack.dev')
-const local = require('./webpack.local')
-const production = require('./webpack.production')
-
 let config = {};
 if (process.env.NODE_ENV === 'production') {
-    config = production;
+    config = require('./webpack.production');
 } else if (process.env.NODE_ENV === 'local') {
-    config = local;
+    config = require('./webpack.local');
 } else { //process.env.NODE_ENV === 'dev'
-    config = dev;
+    config = require('./webpack.dev');
 }
 module.exports = config;

@@ -3,16 +3,16 @@ const merge = require("webpack-merge");
 const config = require('../config');
 const path = require('path');
 
-const webpackCommonConfig = require("./webpack.common");
+const webpackBaseConfig = require("./webpack.base");
 
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 // 将 Hol-reload 相对路径添加到 webpack.base.conf 的 对应 entry 前
-Object.keys(webpackCommonConfig.entry).forEach(function (name) {
-    //webpackCommonConfig.entry[name] = ['./dev-client'].concat(webpackCommonConfig.entry[name])
-    webpackCommonConfig.entry[name] = [hotMiddlewareScript].concat(webpackCommonConfig.entry[name])
+Object.keys(webpackBaseConfig.entry).forEach(function (name) {
+    //webpackBaseConfig.entry[name] = ['./dev-client'].concat(webpackBaseConfig.entry[name])
+    webpackBaseConfig.entry[name] = [hotMiddlewareScript].concat(webpackBaseConfig.entry[name])
 })
 
-module.exports = merge(webpackCommonConfig, {
+module.exports = merge(webpackBaseConfig, {
     mode: "development",
     devtool: "eval",
     devServer: {

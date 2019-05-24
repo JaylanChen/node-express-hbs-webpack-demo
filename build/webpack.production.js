@@ -1,11 +1,11 @@
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const webpackCommonConfig = require("./webpack.common");
+const webpackBaseConfig = require("./webpack.base");
 
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = merge(webpackCommonConfig, {
+module.exports = merge(webpackBaseConfig, {
   mode: "production",
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

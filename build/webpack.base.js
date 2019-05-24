@@ -75,6 +75,9 @@ module.exports = {
     }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '..', 'client', 'views', 'partials'),
+      to: path.resolve(__dirname, '..', 'dist', 'views', 'partials')
+    }, {
       from: path.resolve(__dirname, '..', 'client', 'assets'),
       to: path.resolve(__dirname, '..', 'dist', 'assets')
     }]),
