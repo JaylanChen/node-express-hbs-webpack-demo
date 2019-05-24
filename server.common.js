@@ -1,7 +1,7 @@
 const favicon = require("serve-favicon");
 const path = require('path');
-const express = require("express");
 require('express-async-errors');
+const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const compression = require('compression');
@@ -33,11 +33,10 @@ function initExpressApp(config) {
     let projectRootPath = appConfig.projectRootPath;
     if (isLocal) {
         app.use(favicon(path.join(projectRootPath, 'client', 'assets', 'favicon.ico')));
-        app.use(express.static(path.join(projectRootPath, "client")));
     } else {
         app.use(favicon(path.join(projectRootPath, 'dist', 'assets', 'favicon.ico')));
-        app.use(express.static(path.join(projectRootPath, "dist")));
     }
+    app.use(express.static(path.join(projectRootPath, "dist")));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
