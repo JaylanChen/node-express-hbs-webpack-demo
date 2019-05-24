@@ -1,6 +1,5 @@
 //配置
 const config = require('./config');
-const routes = require('./routes');
 const serverCommon = require("./server.common");
 
 
@@ -16,6 +15,7 @@ serverCommon.beforeInitAppRoutes(app);
 
 serverCommon.beforeInitAppRoutes(app);
 
+const routes = require('./routes');
 routes(app);
 
 serverCommon.afterInitAppRoutes(app);
