@@ -1,5 +1,5 @@
 import "../css/style.css";
-require('core-js');
+require("@babel/polyfill");
 
 // const $ = require("jquery")
 // // jquery

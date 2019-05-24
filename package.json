@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/JaylanChen/node-express-hbs-webpack-demo#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",

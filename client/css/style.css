@@ -66,3 +66,7 @@ a:hover {
 .clearfix {
     zoom: 1
 }
+
+h1 {
+    color: #999;
+}
