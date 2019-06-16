@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackCustomInjectPlugin = require('html-webpack-custominject-plugin');
