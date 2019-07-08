@@ -1,5 +1,6 @@
 import "../css/style.css";
-require("@babel/polyfill");
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 // const $ = require("jquery")
 // // jquery
