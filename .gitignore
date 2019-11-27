@@ -62,3 +62,6 @@ typings/
 
 # webpack build output
 dist
+
+
+package-lock.json
