@@ -112,20 +112,23 @@ module.exports = {
       ],
       // exclude: /node_modules/
     },
-    // {
-    //     test: /\.less$/,
-    //     use: extractTextPlugin.extract({
-    //         fallback:"style-loader",
-    //         use: ["css-loader", "less-loader"]
-    //     })
-    // },
-    // {
-    //     test: /\.(scss|sass)$/,
-    //     use: extractTextPlugin.extract({
-    //         fallback:"style-loader",
-    //         use: ["css-loader", "sass-loader"]
-    //     })
-    // },
+    {
+      test: /\.s[ac]ss$/i,
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          hmr: isLocal,
+        }
+      }, {
+        loader: "css-loader"
+      }, {
+        loader: "sass-loader"
+      }],
+      include: [
+        path.join(projectRootPath, 'node_modules', 'xiaoben.core', 'client', 'css'),
+        path.join(projectRootPath, 'client', 'css')
+      ],
+    },
     {
       test: /\.hbs$/,
       oneOf: [{
