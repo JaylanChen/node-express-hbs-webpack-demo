@@ -12,6 +12,7 @@ const htmlWebpackPlugins = require('./plugins/multi-html-webpack-plugin');
 
 const publicPath = config.build.publicPath;
 const isLocal = process.env.NODE_ENV === 'local';
+const projectRootPath = path.resolve(__dirname, '..');
 
 module.exports = {
   entry: {
@@ -75,15 +76,15 @@ module.exports = {
     }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, '..', 'client', 'views', 'partials'),
-      to: path.resolve(__dirname, '..', 'dist', 'views', 'partials')
+      from: path.resolve(projectRootPath, 'client', 'views', 'partials'),
+      to: path.resolve(projectRootPath, 'dist', 'views', 'partials')
     }, {
-      from: path.resolve(__dirname, '..', 'client', 'assets'),
-      to: path.resolve(__dirname, '..', 'dist', 'assets')
+      from: path.resolve(projectRootPath, 'client', 'assets'),
+      to: path.resolve(projectRootPath, 'dist', 'assets')
     }]),
     // new CopyWebpackPlugin([{
-    //   from: path.resolve(__dirname, '..',  'client', 'font'),
-    //   to: path.resolve(__dirname, '..',  'dist', 'font')
+    //   from: path.resolve(projectRootPath,  'client', 'font'),
+    //   to: path.resolve(projectRootPath,  'dist', 'font')
     // }])
   ],
   module: {
@@ -136,10 +137,10 @@ module.exports = {
         loader: 'handlebars-loader',
         query: {
           helperDirs: [
-            path.join(__dirname, '..', 'utils', 'hbs.helpers')
+            path.join(projectRootPath, 'utils', 'hbs.helpers')
           ],
           partialDirs: [
-            path.join(__dirname, '..', 'views', 'partials')
+            path.join(projectRootPath, 'views', 'partials')
           ]
         }
       },
