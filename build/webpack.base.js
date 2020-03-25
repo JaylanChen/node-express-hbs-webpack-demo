@@ -5,7 +5,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackCustomInjectPlugin = require('html-webpack-custominject-plugin');
-const AutoDllPlugin = require('autodll-webpack-plugin');
 
 const config = require('../config');
 const htmlWebpackPlugins = require('./plugins/multi-html-webpack-plugin');
@@ -26,34 +25,40 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: publicPath
   },
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       vendors: {
-  //         name: `chunk-vendors`,
-  //         test: /[\\/]node_modules[\\/]/,
-  //         priority: -10,
-  //         chunks: 'initial' // async 表示对异步模块起作用， initial 表示对初始模块起作用， all 则表示对所有模块起作用
-  //       },
-  //       // vue: {
-  //       //   name: 'chuank-vue',
-  //       //   test: /[\\/]node_modules[\\/]vue[\\/]/,
-  //       //   priority: 10,
-  //       //   chunks: 'initial'
-  //       // },
-  //       // common: {
-  //       //   name: `chunk-common`,
-  //       //   minChunks: 2,
-  //       //   priority: -20,
-  //       //   chunks: 'initial',
-  //       //   reuseExistingChunk: true
-  //       // }
-  //     }
-  //   },
-  //   // runtimeChunk: {
-  //   //   name: 'manifest'
-  //   // }
-  // },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          name: `vendor`,
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: 'initial' // async 表示对异步模块起作用， initial 表示对初始模块起作用， all 则表示对所有模块起作用
+        },
+        corejs: {
+          name: 'core-js',
+          test: /[\\/]node_modules[\\/]core-js[\\/]/,
+          priority: 10,
+          chunks: 'initial'
+        },
+        jquery: {
+          name: 'jquery',
+          test: /[\\/]node_modules[\\/]jquery[\\/]/,
+          priority: 10,
+          chunks: 'initial'
+        },
+        // common: {
+        //   name: `chunk-common`,
+        //   minChunks: 2,
+        //   priority: -20,
+        //   chunks: 'initial',
+        //   reuseExistingChunk: true
+        // }
+      }
+    },
+    // runtimeChunk: {
+    //   name: 'manifest'
+    // }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
@@ -61,15 +66,6 @@ module.exports = {
     }),
     ...htmlWebpackPlugins,
     new HtmlWebpackCustomInjectPlugin(),
-    new AutoDllPlugin({
-      context: path.join(__dirname, '../'),
-      inject: true,
-      filename: isLocal ? '[name]-[hash:8].js' : '[name]-[contenthash:8].js',
-      path: './lib',
-      entry: {
-        vendor: ['axios', 'jquery', 'core-js']
-      }
-    }),
     new MiniCssExtractPlugin({
       filename: isLocal ? 'css/[name]-[hash:8].css' : 'css/[name]-[contenthash:8].css',
       chunkFilename: '[id].css',
