@@ -86,7 +86,7 @@ function addWebpackDevAndHotMiddleware(app) {
     let webpackConfig = require("./build");
 
     let compiler = webpack(webpackConfig);
-    app.use(webpackDevMiddleware(compiler, {
+    let webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
         hot: true,
         writeToDisk: true,
@@ -97,9 +97,14 @@ function addWebpackDevAndHotMiddleware(app) {
             chunks: false,
             chunkModules: false
         }
-    }));
+    });
 
-    let hotMiddleware = webpackHotMiddleware(compiler);
+    webpackDevMiddlewareInstance.waitUntilValid(() => {
+        console.log("\x1b[92m%s\x1b[0m", __dirname);
+        console.log("\x1b[92m%s\x1b[0m", `Server Listening on: http://localhost:${appConfig.appPort}/`);
+    });
+
+    let hotMiddlewareInstance = webpackHotMiddleware(compiler);
     // compiler.plugin('compilation', function (compilation) {
     //   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
     //     //let cccc = compilation.getStats().toJson();
@@ -112,7 +117,10 @@ function addWebpackDevAndHotMiddleware(app) {
     //     }
     //   })
     // })
-    app.use(hotMiddleware);
+
+    app.use(webpackDevMiddlewareInstance);
+
+    app.use(hotMiddlewareInstance);
 
     // expressHandlebarsMemoryFs(compiler.outputFileSystem);
 }
@@ -148,11 +156,7 @@ function afterInitAppRoutes(app) {
  */
 function createHttpServer(app) {
     let appPort = normalizePort();
-    let server = app.listen(appPort, function () {
-        let addr = server.address();
-        let bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-        console.log("Web server listening on " + bind);
-    });
+    let server = app.listen(appPort);
     server.on("error", onError);
 
 
