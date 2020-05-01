@@ -72,12 +72,15 @@ module.exports = {
     }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin([{
-      from: path.resolve(projectRootPath, 'client', 'views', 'partials'),
-      to: path.resolve(projectRootPath, 'dist', 'views', 'partials')
+      from: path.resolve('client', 'views', 'layouts'),
+      to: path.resolve('dist', 'views', 'layouts'),
+    },{
+      from: path.resolve('client', 'views', 'partials'),
+      to: path.resolve('dist', 'views', 'partials'),
     }, {
-      from: path.resolve(projectRootPath, 'client', 'assets'),
-      to: path.resolve(projectRootPath, 'dist', 'assets')
-    }]),
+      from: path.resolve('client', 'assets'),
+      to: path.resolve('dist', 'assets')
+    }], { context: projectRootPath, copyUnmodified: true }),
     // new CopyWebpackPlugin([{
     //   from: path.resolve(projectRootPath,  'client', 'font'),
     //   to: path.resolve(projectRootPath,  'dist', 'font')

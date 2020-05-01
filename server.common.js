@@ -89,6 +89,7 @@ function addWebpackDevAndHotMiddleware(app) {
     app.use(webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
         hot: true,
+        writeToDisk: true,
         stats: {
             colors: true,
             modules: false,
@@ -113,7 +114,7 @@ function addWebpackDevAndHotMiddleware(app) {
     // })
     app.use(hotMiddleware);
 
-    expressHandlebarsMemoryFs(compiler.outputFileSystem);
+    // expressHandlebarsMemoryFs(compiler.outputFileSystem);
 }
 
 // 初始化应用中间件
