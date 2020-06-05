@@ -90,7 +90,6 @@ module.exports = {
         //   to: path.resolve(projectRootPath, "dist", "font"),
         // },
       ],
-      // options: { context: projectRootPath, copyUnmodified: true },
     }),
   ],
   module: {
