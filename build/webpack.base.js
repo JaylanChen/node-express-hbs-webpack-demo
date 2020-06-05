@@ -25,6 +25,10 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: publicPath,
   },
+  // externals: {
+  //   jquery: 'jQuery',
+  //   dayjs: 'dayjs',
+  // },
   optimization: {
     splitChunks: {
       cacheGroups: {
