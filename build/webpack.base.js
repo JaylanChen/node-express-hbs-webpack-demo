@@ -135,7 +135,6 @@ module.exports = {
             loader: "sass-loader",
           },
         ],
-        include: [path.join(projectRootPath, "node_modules", "xiaoben.core", "client", "css"), path.join(projectRootPath, "client", "css")],
       },
       {
         test: /\.hbs$/,
