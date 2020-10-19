@@ -21,7 +21,7 @@ module.exports = {
     "shared.500": ["./client/js/shared/500.js"],
   },
   output: {
-    filename: isLocal ? "js/[name]-[hash:8].js" : "js/[name]-[contenthash:8].js",
+    filename: isLocal ? "js/[name]-[chunkhash:8].js" : "js/[name]-[contenthash:8].js",
     path: path.resolve(__dirname, "../dist"),
     publicPath: publicPath,
   },
@@ -32,7 +32,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        defaultVendors: {
           name: `vendor`,
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
@@ -62,6 +62,7 @@ module.exports = {
     // runtimeChunk: {
     //   name: 'manifest'
     // }
+    chunkIds: 'named'
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -71,7 +72,7 @@ module.exports = {
     ...htmlWebpackPlugins,
     new HtmlWebpackCustomInjectPlugin(),
     new MiniCssExtractPlugin({
-      filename: isLocal ? "css/[name]-[hash:8].css" : "css/[name]-[contenthash:8].css",
+      filename: isLocal ? "css/[name]-[chunkhash:8].css" : "css/[name]-[contenthash:8].css",
       chunkFilename: "[id].css",
     }),
     new webpack.ProgressPlugin(),
@@ -146,7 +147,7 @@ module.exports = {
           {
             resourceQuery: /client/,
             loader: "handlebars-loader",
-            query: {
+            options: {
               helperDirs: [path.join(projectRootPath, "utils", "hbs.helpers")],
               partialDirs: [path.join(projectRootPath, "views", "partials")],
             },
@@ -163,7 +164,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 8192,
-            name: "images/[name]-[hash:8].[ext]",
+            name: "images/[name]-[chunkhash:8].[ext]",
             publicPath: publicPath,
           },
         },
@@ -175,7 +176,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             limit: 8192,
-            name: "css/font/[name]-[hash:8].[ext]",
+            name: "css/font/[name]-[chunkhash:8].[ext]",
             publicPath: publicPath,
           },
         },
