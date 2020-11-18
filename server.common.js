@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const compression = require('compression');
 const utils = require('./utils');
 const middlewares = require('./middlewares');
-const expressHandlebarsMemoryFs = require('express-handlebars-memory-fs');
 
 const isLocal = process.env.NODE_ENV === 'local';
 let appConfig = null;
@@ -65,8 +64,11 @@ function useHandlebarsViewEngine(app) {
         // partialsDir: path.join(projectRootPath, "dist", "views", "partials"),// 默认`Views` 文件夹下的 /partials
         helpers: utils.handlebarsHelpers
     });
-
-    app.set("views", path.join(projectRootPath, "dist", "views"));
+    if (isLocal) {
+        app.set("views", path.join(projectRootPath, "client", "views"));
+    } else {
+        app.set("views", path.join(projectRootPath, "dist", "views"));
+    }
     app.engine("hbs", hbs.engine);
     app.set("view engine", "hbs");
     if (!isLocal) {
@@ -88,15 +90,7 @@ function addWebpackDevAndHotMiddleware(app) {
     let compiler = webpack(webpackConfig);
     let webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
-        hot: true,
         writeToDisk: true,
-        stats: {
-            colors: true,
-            modules: false,
-            children: false,
-            chunks: false,
-            chunkModules: false
-        }
     });
 
     webpackDevMiddlewareInstance.waitUntilValid(() => {
@@ -121,8 +115,6 @@ function addWebpackDevAndHotMiddleware(app) {
     app.use(webpackDevMiddlewareInstance);
 
     app.use(hotMiddlewareInstance);
-
-    // expressHandlebarsMemoryFs(compiler.outputFileSystem);
 }
 
 // 初始化应用中间件
