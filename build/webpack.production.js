@@ -1,5 +1,6 @@
 const webpack = require("webpack");
-const { merge } = require('webpack-merge');
+const { merge } = require("webpack-merge");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpackBaseConfig = require("./webpack.base");
 
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
@@ -7,14 +8,12 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = merge(webpackBaseConfig, {
   mode: "production",
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-  ],
+  plugins: [new CleanWebpackPlugin(), new webpack.optimize.OccurrenceOrderPlugin()],
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
-          discardComments: { removeAll: true }
+          discardComments: { removeAll: true },
         },
         canPrint: true,
       }),
@@ -26,10 +25,10 @@ module.exports = merge(webpackBaseConfig, {
           compress: {
             // warnings: false,
             // drop_debugger: true,
-            drop_console: true
+            drop_console: true,
           },
-        }
-      })
-    ]
-  }
+        },
+      }),
+    ],
+  },
 });

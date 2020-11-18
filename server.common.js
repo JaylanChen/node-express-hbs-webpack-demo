@@ -64,11 +64,7 @@ function useHandlebarsViewEngine(app) {
         // partialsDir: path.join(projectRootPath, "dist", "views", "partials"),// 默认`Views` 文件夹下的 /partials
         helpers: utils.handlebarsHelpers
     });
-    if (isLocal) {
-        app.set("views", path.join(projectRootPath, "client", "views"));
-    } else {
-        app.set("views", path.join(projectRootPath, "dist", "views"));
-    }
+    app.set("views", path.join(projectRootPath, "dist", "views"));
     app.engine("hbs", hbs.engine);
     app.set("view engine", "hbs");
     if (!isLocal) {
