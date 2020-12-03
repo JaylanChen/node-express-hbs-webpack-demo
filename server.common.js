@@ -81,6 +81,7 @@ function addWebpackDevAndHotMiddleware(app) {
     const webpack = require("webpack");
     const webpackDevMiddleware = require("webpack-dev-middleware");
     const webpackHotMiddleware = require("webpack-hot-middleware");
+    const expressHandlebarsMemoryFs = require('express-handlebars-memory-fs');
     let webpackConfig = require("./build");
 
     let compiler = webpack(webpackConfig);
@@ -111,6 +112,8 @@ function addWebpackDevAndHotMiddleware(app) {
     app.use(webpackDevMiddlewareInstance);
 
     app.use(hotMiddlewareInstance);
+
+    expressHandlebarsMemoryFs(compiler.outputFileSystem);
 }
 
 // 初始化应用中间件
