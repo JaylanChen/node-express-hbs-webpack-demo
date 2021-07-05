@@ -3,7 +3,6 @@ const path = require('path');
 require('express-async-errors');
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
 const compression = require('compression');
 const utils = require('./utils');
 const middlewares = require('./middlewares');
@@ -37,8 +36,8 @@ function initExpressApp(config) {
     }
     app.use(express.static(path.join(projectRootPath, "dist")));
 
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
+    app.use(express.json());
+    app.use(express.urlencoded({
         extended: false
     }));
     app.use(cookieParser());

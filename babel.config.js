@@ -6,7 +6,7 @@ module.exports = function (api) {
             ['@babel/preset-env', {
                 'modules': false,
                 'targets': {
-                    'browsers': ['> 1%', 'last 10 versions', 'not ie <= 9']
+                    'browsers': ['> 1%', 'last 10 versions', 'not ie <= 10']
                 },
                 'useBuiltIns': 'entry', // usage
                 'corejs': 3
@@ -14,8 +14,6 @@ module.exports = function (api) {
         ],
         plugins: [
             '@babel/plugin-proposal-export-default-from',
-            '@babel/plugin-proposal-export-namespace-from',
-            ['@babel/plugin-proposal-class-properties', { 'loose': true }]
         ]
     };
 };

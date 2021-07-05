@@ -64,9 +64,9 @@ module.exports = {
     chunkIds: "named",
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": process.env.NODE_ENV,
-    }),
+    // new webpack.DefinePlugin({
+    //   "process.env.NODE_ENV": process.env.NODE_ENV,
+    // }),
     ...htmlWebpackPlugins,
     new HtmlWebpackCustomInjectPlugin(),
     new MiniCssExtractPlugin({

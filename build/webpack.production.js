@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = merge(webpackBaseConfig, {
   mode: "production",
-  plugins: [new CleanWebpackPlugin(), new webpack.optimize.OccurrenceOrderPlugin()],
+  plugins: [new CleanWebpackPlugin()],
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin({

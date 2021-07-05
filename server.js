@@ -13,8 +13,6 @@ serverCommon.initAppMiddlewares(app);
 
 serverCommon.beforeInitAppRoutes(app);
 
-serverCommon.beforeInitAppRoutes(app);
-
 const routes = require('./routes');
 routes(app);
 
