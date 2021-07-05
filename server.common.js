@@ -37,9 +37,7 @@ function initExpressApp(config) {
     app.use(express.static(path.join(projectRootPath, "dist")));
 
     app.use(express.json());
-    app.use(express.urlencoded({
-        extended: false
-    }));
+    app.use(express.urlencoded());
     app.use(cookieParser());
 
     if (isLocal) {
